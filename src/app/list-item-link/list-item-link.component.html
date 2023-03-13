@@ -1,0 +1,8 @@
+<a routerLink="character/{{ character.id }}" class="centerWithFlex card">
+   <div class="statusBar">
+      <h3>{{ character.name }}</h3>
+      <p [ngClass]="characterStatus(character.status)">{{status}}</p>
+   </div>
+
+   <img src="{{ character.image }}" alt="{{ character.name }}" />
+</a>

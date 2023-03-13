@@ -1,0 +1,21 @@
+<section class="box centerWithFlex">
+  <h1>Rick and Morty characters list:</h1>
+  <app-search (search)="searchedCharacter$.next($event) "></app-search>
+  <ul class="characters" *ngIf="(characters$ | async) as characters; else noCharacters">
+    <li *ngFor="let character of characters">
+      <app-list-item-link [character]="character"></app-list-item-link>
+    </li>
+  </ul>
+
+  <ng-template #noCharacters>
+    <h1>Loading characters...</h1>
+  </ng-template>
+
+  <div style=" margin-left: 70%;">
+    <pagination-controls (pageChange)="currentPg = $event"></pagination-controls>
+</div>
+  <ul class="pagesList">
+    <li *ngFor="let page of allPagesArray | paginate: {itemsPerPage: 10, currentPage: currentPg}" (click)="getPageNumber($any($event.target).innerText)">
+      {{page}}</li>
+  </ul>
+</section>
